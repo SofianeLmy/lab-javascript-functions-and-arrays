@@ -11,40 +11,80 @@ function maxOfTwoNumbers(a, b) {
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
 function findLongestWord(arr) {
-  var splittedArr = arr.split(" ");
-  var longestWord = 0;
-  for(var i = 0; i < splittedArr.length; i++){
-  if (splittedArr[i].length > longestWord){
-    longestWord = splittedArr[i].length}
-    return longestWord;
-  }
+  var longestWord = arr.sort(function(a, b){
+    return b.length - a.length});
+  if (arr.length === 0) {
+    return null;
+  } else if (arr.length === 1) {
+    return arr[0];
+  } else {
+  return longestWord[0];
+}
 }
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers(arr) {
-  let sum = 0;
-  let sumOfNum = arr.reduce((a, b) => a + b, 0);
-  return sumOfNum;
+function sumNumbers(numbers) {
+  let sumResult = 0;
+  numbers.forEach(function (number) {
+    sumResult += number;
+  });
+  return sumResult;
 }
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(complexArray) {
+  let sumResult = 0;
+  complexArray.forEach(function(element){
+    if (typeof element === "number") {
+      return sumResult += element;
+    } else if (typeof element ==="string") {
+      return sumResult += element.length;
+    } else if (typeof element ==="boolean" && element) {
+      return sumResult += 1;
+    }  else if (typeof element ==="boolean" && !element){
+      return sumResult += 0;
+    } else {
+      throw new Error("Unsupported data type sir or ma'am");
+  }
+});
+return sumResult;
+}
+
+
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(avNumbers) { 
+let avResult = sumNumbers(avNumbers);
+if (!avNumbers.length) {
+  return null;
+}
+return avResult/avNumbers.length;
+}
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() {}
+function averageWordLength(words) {
+  let avWordResult = sum(words);
+if (!words.length) {
+  return null;
+}
+return avWordResult/words.length;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(mixedArr) {
+  if (!mixedArr.length) {
+    return null;
+  }
+  let avgMixResult = sum(mixedArr);
+  return Number(parseFloat(avgMixResult / mixedArr.length).toFixed(2));
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
